@@ -1,0 +1,61 @@
+
+{{# each products }}
+    <div class="container">
+        <div class="row"><br><br><br><br>
+            <div class="col-xs-3 item-photo">
+                <img style="width:250px;" src="{{this.thumbnailUrl}}">
+                <h3 style="align-items: center; padding: 0px"><b>{{this.title}}</b></h3>
+                <p style="padding: -40px;">
+                    <small>
+                        <b>Authors: {{this.authors}}</b>
+                    </small>
+                </p>
+            </div>
+            <div class="col-xs-6" style="text-align: justify">
+                <script>
+                    function showMore(){
+                        //removes the link
+                        //document.getElementById('link').parentElement.removeChild('link');
+                        //shows the #more
+                        document.getElementById('more').style.display = "block";
+                    }
+                </script>
+                <p class="description">{{ this.shortDescription }}</p><br/>
+                <div id="more" style="display:none;">
+                    <p class="description">{{ this.longDescription }}</p><br/>
+                    <img..../>
+                </div>
+                <a href="javascript:showMore()" id="link">Read More >></a>
+
+            </div>
+
+
+            <div class="col-xs-3" style="border:0px solid gray">
+                <h3><b>{{this.title}}</b></h3>
+                <h5 class="title-price">Price</h5>
+                <h3 style="margin-top: 0px;">${{this.price}}</h3>
+                <div class="section" style="padding-bottom:20px;">
+                    <h6 class="title-attr">Quantity</h6>
+                    <div>
+                        <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
+                        <input value="1" />
+                        <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+                    </div>
+                </div>
+                <div class="section" style="padding-bottom:20px;">
+                    <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Shopping Cart</button>
+                </div>
+                <div class="col-xs-18">
+                    <p style="padding:15px;">
+                    <small>
+                    Status of Book: {{this.status}}
+                        Category: {{this.categories}}
+                        Published Date: {{this.publishedDate}}
+                    </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+

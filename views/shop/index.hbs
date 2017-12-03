@@ -1,0 +1,132 @@
+<html>
+
+<head>
+
+
+    <style>
+
+        body {margin:0;
+            background-color: darkolivegreen}
+        #white-background{
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: #fefefe;
+            opacity: 0.7;
+            z-index: 9999;
+        }
+
+        #dlgbox{
+            /*initially dialog box is hidden*/
+            display: none;
+            position: fixed;
+            width: 480px;
+            z-index: 9999;
+            border-radius: 20px;
+            background-color: black;
+        }
+
+        #dlg-header{
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            margin: 10px 10px 0px 10px;
+        }
+
+        #dlg-body{
+            background-color: white;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            margin: 0px 10px 0px 10px;
+        }
+
+        #dlg-footer{
+            background-color: #f2f2f2;
+            text-align: right;
+            padding: 10px;
+            margin: 0px 10px 10px 10px;
+        }
+
+        #dlg-footer button{
+            background-color: green;
+            color: white;
+            padding: 5px;
+            border: 0px;
+        }
+</style>
+</head>
+
+
+        <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+        <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+            {{ successMsg }}
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+{{# each products }}
+    <div class="row";>
+        {{# each this }}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/loadProduct?_id={{this._id}}">
+                    <img src="{{ this.thumbnailUrl }}" alt="..." class="img-responsive">
+                        <h3 style="font-size: 20px">{{ this.title }}</h3>
+                    </a>
+                    <div class="caption">
+
+                        <p class="authors"; style="font-size: 13px"><b>Authors : {{ this.authors }}</b></p>
+
+                        <div class="clearfix">
+                            <div class="price pull-left">Price: ${{ this.price }}</div>
+                            <body>
+                            <div id="white-background">
+                            </div>
+                            <div id="dlgbox">
+                                <div id="dlg-header">Your Book is Added to Cart</div>
+                                <div id="dlg-body">Sorry for inconvenience we are working on it</div>
+                                <div id="dlg-footer">
+                                    <button onclick="dlgLogin()">Go Back</button>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-success pull-right" role="button" onclick="showDialog()">Add to Shopping Cart</a>
+                            <script>
+                                function dlgLogin(){
+                                    var whitebg = document.getElementById("white-background");
+                                    var dlg = document.getElementById("dlgbox");
+                                    whitebg.style.display = "none";
+                                    dlg.style.display = "none";
+                                }
+
+                                function showDialog(){
+                                    var whitebg = document.getElementById("white-background");
+                                    var dlg = document.getElementById("dlgbox");
+                                    whitebg.style.display = "block";
+                                    dlg.style.display = "block";
+
+                                    var winWidth = window.innerWidth;
+                                    var winHeight = window.innerHeight;
+
+                                    dlg.style.left = (winWidth/2) - 480/2 + "px";
+                                    dlg.style.top = "150px";
+                                }
+                            </script>
+                            </body>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/each}}
+</html>
